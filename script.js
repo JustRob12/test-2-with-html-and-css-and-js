@@ -1,45 +1,27 @@
-// Wait until DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('registrationForm');
-    const messageDiv = document.getElementById('message');
+// Append values to the display
+function appendToDisplay(value) {
+    const display = document.getElementById("display");
+    display.value += value;
+}
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form from refreshing the page
+// Clear the display
+function clearDisplay() {
+    const display = document.getElementById("display");
+    display.value = '';
+}
 
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+// Delete the last character
+function deleteLast() {
+    const display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
 
-        // Validate form inputs
-        if (name === '' || email === '' || password === '' || confirmPassword === '') {
-            messageDiv.textContent = 'All fields are required.';
-            return;
-        }
-
-        // Check if passwords match
-        if (password !== confirmPassword) {
-            messageDiv.textContent = 'Passwords do not match.';
-            return;
-        }
-
-        // Clear previous message and give success feedback
-        messageDiv.textContent = '';
-        messageDiv.style.color = 'green';
-        messageDiv.textContent = `Registration successful! Welcome, ${name}!`;
-
-        // Optionally, save data to localStorage (simulating a backend)
-        saveUserData({ name, email, password });
-        
-        // Clear form fields
-        form.reset();
-    });
-
-    // Save user data (for demo purposes, we're using localStorage)
-    function saveUserData(user) {
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        users.push(user);
-        localStorage.setItem('users', JSON.stringify(users));
+// Calculate the result
+function calculate() {
+    const display = document.getElementById("display");
+    try {
+        display.value = "i love you bum"
+    } catch (error) {
+        display.value = 'Error';
     }
-});
+}
